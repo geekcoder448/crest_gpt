@@ -47,15 +47,15 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex flex-col w-full max-w-2xl py-24 mx-auto mt-[15px] stretch relative">
-      <div className="absolute top-0 left-0 right-0 p-4 bg-blue-100 text-blue-900 rounded-lg shadow-sm border border-blue-200 mb-4 z-10">
-        <p className="text-center font-medium">
+    <div className='flex flex-col w-full max-w-2xl py-24 mx-auto mt-[15px] stretch relative'>
+      <div className='absolute top-0 left-0 right-0 p-4 bg-blue-100 text-blue-900 rounded-lg shadow-sm border border-blue-200 mb-4 z-10'>
+        <p className='text-center font-medium'>
           Welcome to your Academic Pathway Mentor. I am here to guide your
           studies and help you achieve your goals.
         </p>
       </div>
 
-      <div className="flex-1 overflow-y-auto mb-4 mt-[5rem] px-4">
+      <div className='flex-1 overflow-y-auto mb-4 mt-[5rem] px-4'>
         {messages.map((m) => (
           <div
             key={m.id}
@@ -69,13 +69,13 @@ export default function Chat() {
               }`}
             >
               <Markdown
-                className="whitespace-pre-wrap prose prose-sm"
+                className='whitespace-pre-wrap prose prose-sm'
                 rehypePlugins={[rehypeHighlight]}
               >
                 {m.content}
               </Markdown>
             </div>
-            <p className="mt-1 text-[10px] uppercase tracking-wider text-gray-400">
+            <p className='mt-1 text-[10px] uppercase tracking-wider text-gray-400'>
               {m.role === "user" ? "Student" : "Professor"}
             </p>
           </div>
@@ -86,34 +86,45 @@ export default function Chat() {
       {/* Wrap in relative so the send button positions correctly */}
       <form
         onSubmit={handleSubmit}
-        className="fixed bottom-0 w-full max-w-2xl m-auto bg-white p-4"
+        className='fixed bottom-0 w-full max-w-2xl m-auto p-4 bg-white border-t border-slate-200 shadow-lg'
       >
-        <div className="relative flex items-end border border-slate-200 rounded-full focus-within:ring-2 focus-within:ring-blue-500 p-1 bg-slate-50">
+        <div className='relative flex items-end border-2 border-blue-300 rounded-2xl focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 p-2 bg-white shadow-sm transition-all duration-200'>
           <textarea
             ref={inputRef}
             onKeyDown={handleKeyDown}
-            className={`flex-grow pr-14 pl-5 py-3 rounded-full focus:outline-none resize-none bg-transparent ${
+            className={`flex-grow pr-14 pl-3 py-2 rounded-xl focus:outline-none resize-none bg-white text-slate-800 text-base placeholder:text-slate-400 font-medium leading-relaxed ${
               maxHeightReached ? "overflow-y-auto" : "overflow-hidden"
             }`}
             value={input}
-            placeholder="Ask a question about your pathway..."
+            placeholder='Ask a question about your pathway...'
             onChange={handleInput}
             style={{ height: inputHeight }}
           />
           <button
-            type="submit"
-            className="absolute right-2 bottom-2 bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-blue-700 transition-colors"
+            type='submit'
+            className='absolute right-3 bottom-3 bg-blue-600 text-white rounded-xl w-10 h-10 flex items-center justify-center hover:bg-blue-700 active:scale-95 transition-all duration-150 shadow-sm'
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-5 w-5'
+              viewBox='0 0 20 20'
+              fill='currentColor'
             >
-              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+              <path d='M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z' />
             </svg>
           </button>
         </div>
+        <p className='text-center text-xs text-slate-400 mt-2'>
+          Press{" "}
+          <kbd className='px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-slate-500 text-xs'>
+            Enter
+          </kbd>{" "}
+          to send ·{" "}
+          <kbd className='px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-slate-500 text-xs'>
+            Shift+Enter
+          </kbd>{" "}
+          for new line
+        </p>
       </form>
     </div>
   );
