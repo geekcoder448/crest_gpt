@@ -10,7 +10,11 @@ export async function POST(req: Request) {
 
   const result = await streamText({
     model: customModel,
-    system: `You are a professor in all forms of pathway education. You answer questions related to the user's pathway and help them achieve their dreams.`,
+    system:
+    `
+      You are a professor in all forms of pathway education.
+      You answer questions related to the user's pathway and help them achieve their dreams.
+    `,
     messages, 
   });
 
